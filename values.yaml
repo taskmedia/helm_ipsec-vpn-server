@@ -1,8 +1,13 @@
+# recommended to overwrite name when using sealed-secrets
+fullnameOverride: vpn-server
+
+namespace: vpn
+
 image:
   repository: hwdsl2/ipsec-vpn-server
   tag: latest
 
-sealed-secrets: false
+sealed_secrets: false
 
 vpn:
   dns_name: vpn.example.com

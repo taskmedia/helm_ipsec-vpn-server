@@ -1,0 +1,68 @@
+{{- if .Values.sealed_secrets }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ipsec-vpn-server.fullname" . }}-vpnscript
+  namespace: {{ .Values.namespace }}
+data:
+  create-env.sh: |-
+    #!/usr/local/bin/bash
+
+    prefix=VPN_CONFIGBUILDER_PASSWORD_
+    is_first_user=true
+    is_second_user=false
+    is_first_password=true
+    is_second_password=false
+    env_file=/vpn/vpn.env
+
+    echo -n "" > ${env_file}
+
+    echo "VPN_DNS_NAME=\"${VPN_CONFIGBUILDER_DNSNAME}\"" >> ${env_file}
+    echo "VPN_IPSEC_PSK=\"${VPN_CONFIGBUILDER_PSK}\"" >> ${env_file}
+
+    # users
+    env | while IFS= read -r line; do
+      name=${line%%=*}
+
+      if [[ "${name}" =~ ^$prefix ]]; then
+        username=${name#"$prefix"}
+        if [ "${is_first_user}" = true ]; then
+          is_first_user=false
+          is_second_user=true
+          echo "VPN_USER=\"${username}\"" >> ${env_file}
+          echo -n "VPN_ADDL_USERS=\"" >> ${env_file}
+        else
+          if [ "${is_second_user}" = true ]; then
+            is_second_user=false
+            echo -n "${username}" >> ${env_file}
+          else
+            echo -n " ${username}" >> ${env_file}
+          fi
+        fi
+      fi
+    done
+    echo "\"" >> ${env_file}
+
+    # passwords
+    env | while IFS= read -r line; do
+      name=${line%%=*}
+      password=${line#*=}
+
+      if [[ "${name}" =~ ^$prefix ]]; then
+        if [ "${is_first_password}" = true ]; then
+          is_first_password=false
+          is_second_password=true
+          echo "VPN_PASSWORD=\"${password}\"" >> ${env_file}
+          echo -n "VPN_ADDL_PASSWORDS=\"" >> ${env_file}
+        else
+          if [ "${is_second_password}" = true ]; then
+            is_second_password=false
+            echo -n "${password}" >> ${env_file}
+          else
+            echo -n " ${password}" >> ${env_file}
+          fi
+        fi
+      fi
+    done
+    echo "\"" >> ${env_file}
+{{- end }}

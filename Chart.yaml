@@ -1,0 +1,11 @@
+apiVersion: v2
+name: ipsec-vpn-server
+description: Deploy IPsec VPN server inside K8s with optional sealed-secrets
+
+type: application
+
+version: 0.1.0
+
+# hwdsl2/docker-ipsec-vpn-server does not provide versioning
+# see: https://github.com/hwdsl2/docker-ipsec-vpn-server/issues/98
+appVersion: "0.0.0"

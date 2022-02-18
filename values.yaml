@@ -1,0 +1,13 @@
+image:
+  repository: hwdsl2/ipsec-vpn-server
+  tag: latest
+
+sealed-secrets: false
+
+vpn:
+  dns_name: vpn.example.com
+  psk: your_presharedkey
+
+users:
+  - username: vpn
+    password: password

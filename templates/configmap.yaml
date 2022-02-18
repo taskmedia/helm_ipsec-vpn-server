@@ -1,4 +1,3 @@
-{{- if .Values.sealed_secrets }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -65,4 +64,3 @@ data:
       fi
     done
     echo "\"" >> ${env_file}
-{{- end }}

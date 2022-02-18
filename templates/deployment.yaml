@@ -1,0 +1,67 @@
+{{- $secretname := (printf "%s-vpnconfig" (include "ipsec-vpn-server.fullname" .)) -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "ipsec-vpn-server.fullname" . }}-vpn-server
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vpn-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vpn-server
+    spec:
+      initContainers:
+        - name: init-config
+          image: bash:alpine3.15
+          command: ["sh", "-c"]
+          args: ["/vpn/scripts/create-env.sh"]
+          env:
+            - name: VPN_CONFIGBUILDER_DNSNAME
+              value: {{ .Values.vpn.dns_name }}
+            - name: VPN_CONFIGBUILDER_PSK
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretname }}
+                  key: psk
+{{- range .Values.users }}
+            - name: VPN_CONFIGBUILDER_PASSWORD_{{ .username }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretname }}
+                  key: password_{{ .username }}
+{{- end }}
+          volumeMounts:
+            - mountPath: /vpn
+              name: vpn-config
+            - mountPath: /vpn/scripts
+              name: vpn-script
+              readOnly: true
+      containers:
+        - name: vpn-server
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          securityContext:
+            privileged: true
+          ports:
+            - name: vpn-isakmp
+              containerPort: 500
+              protocol: UDP
+            - name: vpn-ike
+              containerPort: 4500
+              protocol: UDP
+          volumeMounts:
+            - mountPath: /opt/src/env/
+              name: vpn-config
+
+      volumes:
+        - name: vpn-config
+          emptyDir: {}
+        - name: vpn-script
+          configMap:
+            name: {{ include "ipsec-vpn-server.fullname" . }}-vpnscript
+            defaultMode: 0777

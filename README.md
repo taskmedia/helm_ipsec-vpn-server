@@ -1,3 +1,5 @@
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/ipsec-vpn-server)](https://artifacthub.io/packages/search?repo=ipsec-vpn-server)
+
 # IPsec VPN Server Helm chart
 
 Kubernetes [Helm](https://helm.sh) chart image to run an IPsec VPN server, with IPsec/L2TP, Cisco IPsec and IKEv2.

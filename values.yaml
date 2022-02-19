@@ -1,5 +1,5 @@
 # recommended to overwrite name when using sealed-secrets
-fullnameOverride: vpn-server
+fullnameOverride: vpn
 
 namespace: vpn
 

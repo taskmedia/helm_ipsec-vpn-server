@@ -1,0 +1,3 @@
+Your Kubernetes VPN server is ready to be used.
+
+Have a look at the pod logs to view your connection details.

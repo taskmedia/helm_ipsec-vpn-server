@@ -16,3 +16,15 @@ vpn:
 users:
   - username: vpn
     password: password
+
+ingress:
+  traefik:
+    enabled: false
+
+    ports:
+      isakmp:
+        name: vpn-isakmp
+        port: 500
+      ike:
+        name: vpn-ike
+        port: 4500

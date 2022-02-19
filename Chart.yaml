@@ -15,6 +15,6 @@ version: 1.0.2
 
 # hwdsl2/docker-ipsec-vpn-server does not provide versioning
 # see: https://github.com/hwdsl2/docker-ipsec-vpn-server/issues/98
-appVersion: "0.0.0"
+appVersion: "latest"
 
 icon: https://media.task.media/images/logo.png

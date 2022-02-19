@@ -18,13 +18,13 @@ users:
     password: password
 
 ingress:
+  ports:
+    isakmp:
+      name: vpn-isakmp
+      port: 500
+    ike:
+      name: vpn-ike
+      port: 4500
+
   traefik:
     enabled: false
-
-    ports:
-      isakmp:
-        name: vpn-isakmp
-        port: 500
-      ike:
-        name: vpn-ike
-        port: 4500

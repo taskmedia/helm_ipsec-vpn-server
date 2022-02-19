@@ -48,11 +48,11 @@ spec:
           securityContext:
             privileged: true
           ports:
-            - name: vpn-isakmp
-              containerPort: 500
+            - name: {{ .Values.ingress.ports.isakmp.name }}
+              containerPort: {{ .Values.ingress.ports.isakmp.port }}
               protocol: UDP
-            - name: vpn-ike
-              containerPort: 4500
+            - name: {{ .Values.ingress.ports.ike.name }}
+              containerPort: {{ .Values.ingress.ports.ike.port }}
               protocol: UDP
           volumeMounts:
             - mountPath: /opt/src/env/

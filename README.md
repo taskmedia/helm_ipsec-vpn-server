@@ -20,11 +20,13 @@ To deploy the Helm chart please check out this repository and copy the [`values.
 After it was modified you can deploy the chart with the following command.
 
 ```bash
-$ cp ./values.yaml ./my-values.yaml
+$ helm repo add tm-ipsec-vpn https://ipsec-vpn-server.helm.task.media
+$ helm repo update
 
-$ vi my-values.yaml ./my-values.yaml
+$ helm show values tm-ipsec-vpn/ipsec-vpn-server > ./my-values.yaml
+$ vi ./my-values.yaml
 
-$ helm upgrade --install vpn ./ --values ./my-values.yaml
+$ helm upgrade --install vpn tm-ipsec-vpn/ipsec-vpn-server --values ./my-values.yaml
 ```
 
 ## Using sealed-secrets

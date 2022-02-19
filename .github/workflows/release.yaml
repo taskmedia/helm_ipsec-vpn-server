@@ -1,0 +1,40 @@
+name: Release
+on:
+  release:
+    types: [published]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: github.repository == 'taskmedia/helm_ipsec-vpn-server'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        run: |
+          curl -L https://git.io/get_helm.sh | bash -s -- -v v3.7.1
+
+      - name: Create release binary
+        run: |
+          helm package ./ --destination release/
+
+      - name: Update Index
+        env:
+          PROJECT: github.com/taskmedia/helm_ipsec-vpn-server
+          REPO_URL: https://ipsec-vpn-server.helm.task.media
+        run: |
+          rm -rf ./gh-pages.zip
+          curl -sSLO https://${PROJECT}/archive/gh-pages.zip
+          unzip -oj ./gh-pages.zip -d ./repo/
+          cp ./release/*tgz ./repo/
+          cp ./README.md ./repo/index.md
+          helm repo index --merge ./repo/index.yaml --url ${REPO_URL} ./repo
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: repo
+          clean: false

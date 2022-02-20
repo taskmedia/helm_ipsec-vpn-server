@@ -1,4 +1,4 @@
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/ipsec-vpn-server)](https://artifacthub.io/packages/search?repo=ipsec-vpn-server)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/ipsec-vpn-server)](https://artifacthub.io/packages/helm/ipsec-vpn-server/ipsec-vpn-server)
 
 # Helm chart: IPsec VPN server
 

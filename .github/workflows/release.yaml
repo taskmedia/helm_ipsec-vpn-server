@@ -5,7 +5,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.repository == 'taskmedia/helm_ipsec-vpn-server'
+    if: github.repository == 'taskmedia/helm_test'
     steps:
       - name: Checkout
         uses: actions/checkout@v2

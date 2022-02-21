@@ -37,6 +37,6 @@ jobs:
         with:
           repository-name: taskmedia/helm
           branch: gh-pages
-          token: ${{secrets.GH_PAT}}
+          token: "${{secrets.GH_PAT}}"
           folder: repo
           clean: false

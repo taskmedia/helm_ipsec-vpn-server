@@ -23,7 +23,7 @@ jobs:
       - name: Update Index
         env:
           PROJECT: github.com/taskmedia/helm_ipsec-vpn-server
-          REPO_URL: https://ipsec-vpn-server.helm.task.media
+          REPO_URL: https://helm.task.media/ipsec-vpn-server
         run: |
           rm -rf ./gh-pages.zip
           curl -sSLO https://${PROJECT}/archive/gh-pages.zip
@@ -35,6 +35,8 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
+          repository-name: taskmedia/helm
           branch: gh-pages
+          token: ${secret.GH_PAT}
           folder: repo
           clean: false

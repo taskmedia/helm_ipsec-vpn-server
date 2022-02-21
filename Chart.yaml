@@ -1,7 +1,7 @@
 apiVersion: v2
 name: ipsec-vpn-server
 description: Deploy IPsec VPN server inside K8s with optional sealed-secrets
-home: https://ipsec-vpn-server.helm.task.media
+home: https://helm.task.media/ipsec-vpn-server
 keywords:
   - vpn
   - ipsec

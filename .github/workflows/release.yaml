@@ -22,15 +22,19 @@ jobs:
 
       - name: Update Index
         env:
-          PROJECT: github.com/taskmedia/helm_ipsec-vpn-server
-          REPO_URL: https://helm.task.media/ipsec-vpn-server
+          GH_PAGES_URL: github.com/taskmedia/helm
+          REPO_NAME: ipsec-vpn-server
+          HELM_URL: https://helm.task.media/
         run: |
           rm -rf ./gh-pages.zip
-          curl -sSLO https://${PROJECT}/archive/gh-pages.zip
-          unzip -oj ./gh-pages.zip -d ./repo/
-          cp ./release/*tgz ./repo/
-          cp ./README.md ./repo/index.md
-          helm repo index --merge ./repo/index.yaml --url ${REPO_URL} ./repo
+          rm -rf ./repo
+          curl -sSLO https://${GH_PAGES_URL}/archive/gh-pages.zip
+          unzip -o ./gh-pages.zip -d ./repo/
+          mv -f ./repo/helm-gh-pages/* ./repo
+          rm -rf ./repo/helm-gh-pages/
+          cp ./release/*tgz ./repo/${REPO_NAME}/
+          cp ./README.md ./repo/${REPO_NAME}/index.md
+          helm repo index --merge ./repo/index.yaml --url ${HELM_URL}/${REPO_NAME} ./repo
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5

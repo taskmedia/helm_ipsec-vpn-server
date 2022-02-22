@@ -37,6 +37,7 @@ jobs:
         with:
           repository-name: taskmedia/helm
           branch: gh-pages
-          ssh-key: ${{ secrets.PROBLEMWITHSECRETS }}
+          # problem was org-secrets only available on public 
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
           folder: repo
           clean: false

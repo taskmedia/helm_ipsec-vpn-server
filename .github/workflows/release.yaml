@@ -37,57 +37,6 @@ jobs:
         with:
           repository-name: taskmedia/helm
           branch: gh-pages
-          ssh-key: |
-            -----BEGIN RSA PRIVATE KEY-----
-            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
-            -----END RSA PRIVATE KEY-----
+          ssh-key: ${{ secrets.PROBLEMWITHSECRETS }}
           folder: repo
           clean: false

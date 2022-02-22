@@ -37,6 +37,6 @@ jobs:
         with:
           repository-name: taskmedia/helm
           branch: gh-pages
-          token: ${{ secrets.PERSONALACCESSTOKEN }}
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
           folder: repo
           clean: false

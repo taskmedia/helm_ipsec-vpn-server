@@ -18,7 +18,7 @@ You find detailed documentation in the section [Using sealed-secrets](#Using-sea
 
 ## Installation
 
-To deploy the Helm chart please check out this repository and copy the [`values.yaml`](./values.yaml)-file.
+To deploy the Helm chart first copy the [`values.yaml`](./values.yaml)-file and customize your deployment.
 After it was modified you can deploy the chart with the following command.
 
 ```bash

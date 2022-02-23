@@ -41,10 +41,6 @@ spec:
       containers:
         - name: vpn-server
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
           securityContext:
             privileged: true
           ports:

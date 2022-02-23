@@ -11,7 +11,7 @@ sources:
 
 type: application
 
-version: 1.1.0
+version: 1.1.1
 
 # hwdsl2/docker-ipsec-vpn-server does not provide versioning
 # see: https://github.com/hwdsl2/docker-ipsec-vpn-server/issues/98

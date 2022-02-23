@@ -1,4 +1,4 @@
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/ipsec-vpn-server)](https://artifacthub.io/packages/helm/ipsec-vpn-server/ipsec-vpn-server)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/taskmedia)](https://artifacthub.io/packages/helm/taskmedia/ipsec-vpn-server)
 
 # Helm chart: IPsec VPN server
 
@@ -22,13 +22,13 @@ To deploy the Helm chart please check out this repository and copy the [`values.
 After it was modified you can deploy the chart with the following command.
 
 ```bash
-$ helm repo add tm-ipsec-vpn https://ipsec-vpn-server.helm.task.media
+$ helm repo add taskmedia https://helm.task.media
 $ helm repo update
 
-$ helm show values tm-ipsec-vpn/ipsec-vpn-server > ./my-values.yaml
+$ helm show values taskmedia/ipsec-vpn-server > ./my-values.yaml
 $ vi ./my-values.yaml
 
-$ helm upgrade --install vpn tm-ipsec-vpn/ipsec-vpn-server --values ./my-values.yaml
+$ helm upgrade --install vpn taskmedia/ipsec-vpn-server --values ./my-values.yaml
 ```
 
 ## Using sealed-secrets

@@ -6,6 +6,7 @@ namespace: vpn
 image:
   repository: hwdsl2/ipsec-vpn-server
   tag: latest
+  pullPolicy: Always
 
 sealed_secrets: false
 

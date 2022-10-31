@@ -12,9 +12,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Helm
-        run: |
-          curl -L https://git.io/get_helm.sh | bash -s -- -v v3.7.1
+      - uses: azure/setup-helm@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release binary
         run: |

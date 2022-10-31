@@ -19,6 +19,12 @@ jobs:
       - name: Create release binary
         run: |
           helm package ./ --destination release/
+          
+      - name: login ghcr registry
+        run: echo '${{ secrets.GITHUB_TOKEN }}' | docker login ghcr.io -u taskmedia --password-stdin
+        
+      - name: push Helm chart to ghcr
+        run: helm push ./release/*tgz oci://ghcr.io/taskmedia
 
       - name: Update Index
         env:

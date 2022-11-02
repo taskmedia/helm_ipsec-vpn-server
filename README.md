@@ -31,10 +31,11 @@ $ vi ./my-values.yaml
 $ helm upgrade --install vpn taskmedia/ipsec-vpn-server --values ./my-values.yaml
 ```
 
-You can also use OCI Helm charts from [ghcr.io](https://ghcr.io/):
+You can also use OCI Helm charts from [ghcr.io](https://ghcr.io/) or Docker Hub:
 
 ```bash
 $ helm upgrade --install vpn oci://ghcr.io/taskmedia/ipsec-vpn-server
+$ helm upgrade --install vpn oci://registry-1.docker.io/taskmedia/ipsec-vpn-server
 ```
 
 ## Using sealed-secrets

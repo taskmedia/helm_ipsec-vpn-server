@@ -18,7 +18,7 @@ jobs:
 
       - name: Create release binary
         run: |
-          helm package ./ --destination release/
+          helm package charts/ipsec-vpn-server --destination release/
           
       - name: login ghcr registry
         run: echo '${{ secrets.GITHUB_TOKEN }}' | docker login ghcr.io -u taskmedia --password-stdin

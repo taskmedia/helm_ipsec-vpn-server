@@ -28,6 +28,18 @@ jobs:
         commit_options: "--no-verify"
         file_pattern: charts/ipsec-vpn-server/Chart.yaml
 
+    - name: move release tag
+      shell: bash
+      run: |
+        git tag --force ${{ github.event.release.tag_name }} HEAD
+        git push --force origin ${{ github.event.release.tag_name }}
+
+    - name: update latest tag
+      shell: bash
+      run: |
+        git tag --force latest HEAD
+        git push --force origin latest
+
     - name: Create release binary
       run: |
         helm package charts/ipsec-vpn-server --destination release/

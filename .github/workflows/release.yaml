@@ -7,52 +7,52 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'taskmedia/helm_ipsec-vpn-server'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-      - uses: azure/setup-helm@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: azure/setup-helm@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create release binary
-        run: |
-          helm package ./ --destination release/
-          
-      - name: login ghcr registry
-        run: echo '${{ secrets.GITHUB_TOKEN }}' | docker login ghcr.io -u taskmedia --password-stdin
-        
-      - name: push Helm chart to ghcr
-        run: helm push ./release/*tgz oci://ghcr.io/taskmedia
-        
-      - name: login dockerhub registry
-        run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin
-        
-      - name: push Helm chart to dockerhub
-        run: helm push ./release/*tgz oci://registry-1.docker.io/taskmedia
+    - name: Create release binary
+      run: |
+        helm package charts/ipsec-vpn-server --destination release/
 
-      - name: Update Index
-        env:
-          GH_PAGES_URL: github.com/taskmedia/helm
-          REPO_NAME: ipsec-vpn-server
-          HELM_URL: https://helm.task.media/
-        run: |
-          rm -rf ./gh-pages.zip
-          rm -rf ./repo
-          curl -sSLO https://${GH_PAGES_URL}/archive/gh-pages.zip
-          unzip -o ./gh-pages.zip -d ./repo/
-          mv -f ./repo/helm-gh-pages/* ./repo
-          rm -rf ./repo/helm-gh-pages/
-          cp ./release/*tgz ./repo/${REPO_NAME}/
-          cp ./README.md ./repo/${REPO_NAME}/index.md
-          helm repo index --merge ./repo/index.yaml --url ${HELM_URL} ./repo
+    - name: login ghcr registry
+      run: echo '${{ secrets.GITHUB_TOKEN }}' | docker login ghcr.io -u taskmedia --password-stdin
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          repository-name: taskmedia/helm
-          branch: gh-pages
-          ssh-key: ${{ secrets.DEPLOY_KEY_BLOG }}
-          folder: repo
-          clean: false
+    - name: push Helm chart to ghcr
+      run: helm push ./release/*tgz oci://ghcr.io/taskmedia
+
+    - name: login dockerhub registry
+      run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin
+
+    - name: push Helm chart to dockerhub
+      run: helm push ./release/*tgz oci://registry-1.docker.io/taskmedia
+
+    - name: Update Index
+      env:
+        GH_PAGES_URL: github.com/taskmedia/helm
+        REPO_NAME: ipsec-vpn-server
+        HELM_URL: https://helm.task.media/
+      run: |
+        rm -rf ./gh-pages.zip
+        rm -rf ./repo
+        curl -sSLO https://${GH_PAGES_URL}/archive/gh-pages.zip
+        unzip -o ./gh-pages.zip -d ./repo/
+        mv -f ./repo/helm-gh-pages/* ./repo
+        rm -rf ./repo/helm-gh-pages/
+        cp ./release/*tgz ./repo/${REPO_NAME}/
+        cp ./README.md ./repo/${REPO_NAME}/index.md
+        helm repo index --merge ./repo/index.yaml --url ${HELM_URL} ./repo
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4.2.5
+      with:
+        repository-name: taskmedia/helm
+        branch: gh-pages
+        ssh-key: ${{ secrets.DEPLOY_KEY_BLOG }}
+        folder: repo
+        clean: false

@@ -1,13 +1,17 @@
 apiVersion: v2
 name: ipsec-vpn-server
 description: Deploy IPsec VPN server inside K8s with optional sealed-secrets
+
 home: https://helm.task.media/ipsec-vpn-server
 keywords:
-  - vpn
-  - ipsec
-  - traefik
+- vpn
+- ipsec
+- traefik
+maintainers:
+- name: fty4
+  url: https://github.com/fty4
 sources:
-  - https://github.com/hwdsl2/docker-ipsec-vpn-server
+- https://github.com/hwdsl2/docker-ipsec-vpn-server
 
 type: application
 

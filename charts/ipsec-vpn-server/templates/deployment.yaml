@@ -1,6 +1,6 @@
 {{- $secretname := (printf "%s-vpnconfig" (include "ipsec-vpn-server.fullname" .)) -}}
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: {{ template "ipsec-vpn-server.fullname" . }}-vpn-server
 spec:
@@ -12,6 +12,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ template "ipsec-vpn-server.fullname" . }}-vpn-server
     spec:
+      hostNetwork: true
       initContainers:
         - name: init-config
           image: bash:alpine3.15

@@ -21,9 +21,11 @@ ingress:
     isakmp:
       name: vpn-isakmp
       port: 500
+      protocol: UDP
     ike:
       name: vpn-ike
       port: 4500
+      protocol: UDP
 
   traefik:
     enabled: false

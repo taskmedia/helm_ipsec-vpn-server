@@ -18,9 +18,14 @@ users:
 
 service:
   enabled: true
+
   ports:
-    isakmp: 500
-    ike: 4500
+    isakmp:
+      name: vpn-isakmp
+      port: 500
+    ike:
+      name: vpn-ike
+      port: 4500
 
 ingress:
   traefik:

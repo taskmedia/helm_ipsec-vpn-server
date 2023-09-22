@@ -7,12 +7,12 @@ spec:
   selector:
     app.kubernetes.io/name: {{ template "ipsec-vpn-server.fullname" . }}-vpn-server
   ports:
-    - name: vpn-isakmp
-      port: {{ .Values.service.ports.isakmp }}
+    - name: {{ .Values.service.ports.isakmp.name }}
+      port: {{ .Values.service.ports.isakmp.port }}
       targetPort: vpn-isakmp
       protocol: UDP
-    - name: vpn-ike
-      port: {{ .Values.service.ports.ike }}
+    - name: {{ .Values.service.ports.ike.name }}
+      port: {{ .Values.service.ports.ike.port }}
       targetPort: vpn-ike
       protocol: UDP
 {{- end }}

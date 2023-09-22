@@ -1,6 +1,6 @@
 {{- $fullname_vpn_server := (printf "%s-vpn-server" (include "ipsec-vpn-server.fullname" .)) -}}
 {{- if .Values.ingress.traefik.enabled }}
-{{- range .Values.ingress.ports }}
+{{- range .Values.service.ports }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteUDP
 metadata:

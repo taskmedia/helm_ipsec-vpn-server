@@ -30,4 +30,3 @@ service:
 ingress:
   traefik:
     enabled: false
-

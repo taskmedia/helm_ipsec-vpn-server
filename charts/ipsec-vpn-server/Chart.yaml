@@ -14,7 +14,7 @@ sources:
 - https://github.com/taskmedia/helm_ipsec-vpn-server
 - https://github.com/taskmedia/helm
 type: application
-version: 1.2.2
+version: 2.0.0
 # hwdsl2/docker-ipsec-vpn-server does not provide versioning
 # see: https://github.com/hwdsl2/docker-ipsec-vpn-server/issues/98
 appVersion: "latest"

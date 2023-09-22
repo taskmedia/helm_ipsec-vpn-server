@@ -13,8 +13,8 @@ vpn:
   psk: your_presharedkey
 
 users:
-  - username: vpn
-    password: password
+- username: vpn
+  password: password
 
 service:
   enabled: true

@@ -27,3 +27,6 @@ ingress:
 
   traefik:
     enabled: false
+
+service:
+  enabled: true

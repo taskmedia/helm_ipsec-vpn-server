@@ -10,7 +10,9 @@ spec:
     - name: vpn-isakmp
       port: {{ .Values.service.ports.isakmp }}
       targetPort: vpn-isakmp
+      protocol: UDP
     - name: vpn-ike
       port: {{ .Values.service.ports.ike }}
       targetPort: vpn-ike
+      protocol: UDP
 {{- end }}

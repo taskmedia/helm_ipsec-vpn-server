@@ -45,11 +45,11 @@ spec:
           securityContext:
             privileged: true
           ports:
-            - name: {{ .Values.ingress.ports.isakmp.name }}
-              containerPort: {{ .Values.ingress.ports.isakmp.port }}
+            - name: vpn-isakmp
+              containerPort: {{ .Values.service.ports.isakmp }}
               protocol: UDP
-            - name: {{ .Values.ingress.ports.ike.name }}
-              containerPort: {{ .Values.ingress.ports.ike.port }}
+            - name: vpn-ike
+              containerPort: {{ .Values.service.ports.ike }}
               protocol: UDP
           volumeMounts:
             - mountPath: /opt/src/env/

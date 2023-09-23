@@ -51,12 +51,6 @@ jobs:
     - name: push Helm chart to ghcr
       run: helm push ./release/*tgz oci://ghcr.io/taskmedia
 
-    - name: login dockerhub registry
-      run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin
-
-    - name: push Helm chart to dockerhub
-      run: helm push ./release/*tgz oci://registry-1.docker.io/taskmedia
-
     - name: Update Index
       env:
         GH_PAGES_URL: github.com/taskmedia/helm

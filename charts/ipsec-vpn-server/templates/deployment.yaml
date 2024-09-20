@@ -14,7 +14,7 @@ spec:
     spec:
       initContainers:
         - name: init-config
-          image: bash:alpine3.15
+          image: "{{ .Values.initContainer.image.repository }}:{{ .Values.initContainer.image.tag }}"
           command: ["sh", "-c"]
           args: ["/vpn/scripts/create-env.sh"]
           env:

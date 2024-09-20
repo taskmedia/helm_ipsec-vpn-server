@@ -6,6 +6,11 @@ image:
   tag: latest
   pullPolicy: Always
 
+initContainer:
+  image:
+    repository: bash
+    tag: alpine3.15
+
 sealed_secrets: false
 
 vpn:

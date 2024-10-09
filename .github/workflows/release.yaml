@@ -68,7 +68,7 @@ jobs:
         helm repo index --merge ./repo/index.yaml --url ${HELM_URL} ./repo
 
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.2.5
+      uses: JamesIves/github-pages-deploy-action@v4.6.8
       with:
         repository-name: taskmedia/helm
         branch: gh-pages

@@ -59,8 +59,7 @@ spec:
 
       volumes:
         - name: vpn-config
-          persistentVolumeClaim:
-            claimName: {{ include "ipsec-vpn-server.fullname" . }}-config
+          emptyDir: {}
         - name: vpn-script
           configMap:
             name: {{ include "ipsec-vpn-server.fullname" . }}-vpnscript

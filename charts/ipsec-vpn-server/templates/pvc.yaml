@@ -10,16 +10,3 @@ spec:
   resources:
       requests:
           storage: 10Mi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ include "ipsec-vpn-server.fullname" . }}-config
-  labels:
-      app.kubernetes.io/name: {{ template "ipsec-vpn-server.fullname" . }}-vpn-server
-spec:
-  accessModes:
-      - ReadWriteOnce
-  resources:
-      requests:
-          storage: 10Mi

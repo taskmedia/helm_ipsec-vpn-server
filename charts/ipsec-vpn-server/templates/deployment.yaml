@@ -54,6 +54,8 @@ spec:
           volumeMounts:
             - mountPath: /opt/src/env/
               name: vpn-config
+            - mountPath: /etc/ipsec.d/
+              name: ipsec-data
 
       volumes:
         - name: vpn-config
@@ -62,3 +64,6 @@ spec:
           configMap:
             name: {{ include "ipsec-vpn-server.fullname" . }}-vpnscript
             defaultMode: 0777
+        - name: ipsec-data
+          persistentVolumeClaim:
+            claimName: {{ include "ipsec-vpn-server.fullname" . }}-data

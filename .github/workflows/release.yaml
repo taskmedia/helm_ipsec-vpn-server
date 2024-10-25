@@ -63,6 +63,7 @@ jobs:
         unzip -o ./gh-pages.zip -d ./repo/
         mv -f ./repo/helm-gh-pages/* ./repo
         rm -rf ./repo/helm-gh-pages/
+        mkdir -p ./repo/${REPO_NAME} || true
         cp ./release/*tgz ./repo/${REPO_NAME}/
         cp ./README.md ./repo/${REPO_NAME}/index.md
         helm repo index --merge ./repo/index.yaml --url ${HELM_URL} ./repo

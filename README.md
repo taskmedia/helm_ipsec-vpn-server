@@ -6,11 +6,11 @@ Kubernetes [Helm](https://helm.sh) chart to run an IPsec VPN server, with IPsec/
 This is based on the docker image [hwdsl2/docker-ipsec-vpn-server](https://github.com/hwdsl2/docker-ipsec-vpn-server).
 
 The main goal is to simplify the deployment of a VPN server for k8s.
-You will be able to configure VPN users directly as list in the [`values.yaml`](./values.yaml).
+You will be able to configure VPN users directly as list in the [`values.yaml`](./charts/ipsec-vpn-server/values.yaml).
 
 ## Configuration
 
-The configuration of the VPN server will be set in the [`values.yaml`](./values.yaml)-file.
+The configuration of the VPN server will be set in the [`values.yaml`](./charts/ipsec-vpn-server/values.yaml)-file.
 Please ensure to overwrite the configuration especially for `vpn.psk`, `vpn.dns_name` and `users[*].password`.
 
 It is possible to commit the password to your git repository if you have a separate sealed-secret instance.
@@ -18,7 +18,7 @@ You find detailed documentation in the section [Using sealed-secrets](#Using-sea
 
 ## Installation
 
-To deploy the Helm chart first copy the [`values.yaml`](./values.yaml)-file and customize your deployment.
+To deploy the Helm chart first copy the [`values.yaml`](./charts/ipsec-vpn-server/values.yaml)-file and customize your deployment.
 After it was modified you can deploy the chart with the following command.
 
 ```bash

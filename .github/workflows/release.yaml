@@ -22,7 +22,7 @@ jobs:
       run: yq -i ".version = \"$(echo ${TAG_NAME:1})\"" charts/ipsec-vpn-server/Chart.yaml
 
     - name: commit version bump
-      uses: stefanzweifel/git-auto-commit-action@v6
+      uses: stefanzweifel/git-auto-commit-action@v7
       with:
         branch: main
         commit_message: "chore(release): update version to ${{ github.event.release.tag_name }}"

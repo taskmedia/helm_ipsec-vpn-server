@@ -1,5 +1,7 @@
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/taskmedia)](https://artifacthub.io/packages/helm/taskmedia/ipsec-vpn-server)
 
+> **⚠️ Moved:** This chart now lives in [taskmedia/helm](https://github.com/taskmedia/helm/tree/main/charts/ipsec-vpn-server). This repository is kept for history only and no longer receives updates.
+
 # Helm chart: IPsec VPN server
 
 Kubernetes [Helm](https://helm.sh) chart to run an IPsec VPN server, with IPsec/L2TP, Cisco IPsec and IKEv2.
